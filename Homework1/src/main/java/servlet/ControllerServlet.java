@@ -16,12 +16,21 @@ public class ControllerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String selectedPage = request.getQueryString().split("=")[1];
-        log.info(request.getMethod(), request.getRemoteAddr(), request.getHeader("User-Agent"),
+        String userAgent = request.getHeader("User-Agent").split("/")[0];
+        log.info(request.getMethod(), request.getRemoteAddr(), userAgent,
                 request.getHeader("Accept-Language"), selectedPage);
-        if ("1".equals(selectedPage)) {
-            request.getRequestDispatcher("/page1.html").forward(request, response);
+        boolean isBrowser = "mozilla".equalsIgnoreCase(userAgent);
+
+        if (isBrowser) {
+            if ("1".equals(selectedPage)) {
+                request.getRequestDispatcher("/page1.html").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/page2.html").forward(request, response);
+            }
         } else {
-            request.getRequestDispatcher("/page2.html").forward(request, response);
+            response.setContentType("text/plain");
+            String res = String.format("You selected page: %s", selectedPage);
+            response.getWriter().println(res);
         }
     }
 
