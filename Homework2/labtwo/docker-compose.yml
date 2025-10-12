@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  mysql-dev:
+    image: mysql:8
+    container_name: hw1_dev
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: homework_dev_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass123!
+    volumes:
+      - ./docker/mysql/dev-init:/docker-entrypoint-initdb.d
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  mysql-prod:
+    image: mysql:8
+    container_name: hw1_prod
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: homework_prod_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass123!
+    volumes:
+      - ./docker/mysql/prod-init:/docker-entrypoint-initdb.d
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10

@@ -1,0 +1,43 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /homework2/api
+
+task-one-message: Hello from application.yml!
+
+spring:
+  application:
+    name: Homework
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      fail-on-empty-beans: false
+  jpa:
+    database: default
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: "UTC"
+        cache:
+          use_second_level_cache: false
+    open-in-view: false
+  profiles:
+    active: dev
+  mvc:
+    problemdetails:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health
