@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /homework4/api
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:university_db}
+    username: ${DB_USERNAME:user}
+    password: ${DB_PASSWORD:pass123!}
+    driver-class-name: org.postgresql.Driver
+  application:
+    name: Homework
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      fail-on-empty-beans: false
+  jpa:
+    database: default
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: "UTC"
+        cache:
+          use_second_level_cache: false
+    open-in-view: false
+  mvc:
+    problemdetails:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health

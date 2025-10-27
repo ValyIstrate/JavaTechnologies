@@ -1,0 +1,7 @@
+package com.javatech.lab4.persistence.repositories;
+
+import com.javatech.lab4.persistence.entities.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+}
