@@ -11,8 +11,7 @@ import java.util.Objects;
 
 public class CourseSpecification {
 
-    public CourseSpecification() {
-    }
+    private CourseSpecification() {}
 
     public static Specification<Course> filterCourses(FilterCoursesRequests filter) {
         return ((root, query, cb) -> {
