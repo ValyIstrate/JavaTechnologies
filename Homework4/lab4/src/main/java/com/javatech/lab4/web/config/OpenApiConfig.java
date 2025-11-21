@@ -18,8 +18,8 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI openAPI() {
         OpenAPI openAPI = new OpenAPI();
-        // openAPI.addSecurityItem(createSecurityRequirement());
-        // openAPI.setComponents(createComponents());
+         openAPI.addSecurityItem(createSecurityRequirement());
+         openAPI.setComponents(createComponents());
         return openAPI;
     }
 

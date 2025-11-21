@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
     Optional<Student> findByEmailOrCode(String email, String code);
+
+    Student findByEmail(String email);
 }

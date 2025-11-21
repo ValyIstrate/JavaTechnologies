@@ -1,8 +1,10 @@
 package com.javatech.lab4.services;
 
+import com.javatech.lab4.persistence.entities.AppUser;
 import com.javatech.lab4.persistence.entities.Course;
 import com.javatech.lab4.persistence.entities.Student;
 import com.javatech.lab4.persistence.entities.StudentCoursePreference;
+import com.javatech.lab4.persistence.repositories.AppUserRepository;
 import com.javatech.lab4.persistence.repositories.CourseRepository;
 import com.javatech.lab4.persistence.repositories.StudentCoursePreferenceRepository;
 import com.javatech.lab4.persistence.repositories.StudentRepository;
@@ -36,6 +38,7 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentCoursePreferenceRepository studentCoursePreferenceRepository;
     private final CourseRepository courseRepository;
+    private final AppUserRepository appUserRepository;
 
     public StudentDto createStudent(CreateStudentRequest createStudentRequest) {
         studentRepository
@@ -48,6 +51,8 @@ public class StudentService {
                 .name(createStudentRequest.name())
                 .email(createStudentRequest.email())
                 .build();
+
+        appUserRepository.save(new AppUser(newStudent));
 
         return StudentDto.fromEntity(studentRepository.save(newStudent));
     }

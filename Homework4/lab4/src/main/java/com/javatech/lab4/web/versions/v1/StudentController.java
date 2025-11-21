@@ -14,11 +14,11 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +33,7 @@ public class StudentController {
     private final StudentService studentService;
     private final StudentResourceAssembler studentResourceAssembler;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(path = "/",  produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             description = "Create Student",
@@ -49,6 +50,7 @@ public class StudentController {
         );
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'INSTRUCTOR')")
     @PostMapping(path = "/filter",  produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             description = "Filter Students",
@@ -65,6 +67,7 @@ public class StudentController {
         return new ResponseEntity<>(studentResources, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'INSTRUCTOR')")
     @GetMapping(path = "/{id}",  produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Operation(
             description = "Get student by id",
@@ -91,6 +94,7 @@ public class StudentController {
                 .body(studentResourceAssembler.toModel(student));
     }
 
+    @PreAuthorize("hasAuthority('STUDENT')")
     @PutMapping(path = "/{id}/preferences", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             description = "Add student preferences",

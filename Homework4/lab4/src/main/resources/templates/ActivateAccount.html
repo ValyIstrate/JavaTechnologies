@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activate Your Account!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+    <!-- use the font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+
+        .otp {
+            color: #006EAD;
+            font-family: "Nunito", serif;
+            font-weight: 600;
+            font-size: 8rem;
+            text-align: center;
+            margin: 0 24px;
+            background: beige;
+        }
+
+        .logo {
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            position: relative;
+            flex-direction: row;
+        }
+    </style>
+
+</head>
+<body>
+
+<p th:text="${'Hello ' + name + ','}"></p>
+
+<p>Welcome to the FII app!</p>
+
+<p>There is one last thing you need to do, which is to activate your account!</p>
+
+<p>Use the following code in order to achieve that:</p>
+
+<div class="otp">
+    <p th:text="${otp_code}">/p>
+</div>
+
+<p>The code will expire in 5 minutes. In case it does, you will receive another one.</p>
+
+<p>PS: Don't share the code with anyone!</p>
+
+<p>Best regards, The FII UAIC Team.</p>
+
+</body>
+</html>

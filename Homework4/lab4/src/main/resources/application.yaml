@@ -4,6 +4,17 @@ server:
     context-path: /homework
 
 spring:
+  mail:
+    host: ${SMTP_ENDPOINT}
+    password: ${SMTP_PASSWORD}
+    username: ${SMTP_USER}
+    port: ${SMTP_PORT}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: ${SMTP_TLS}
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:university_db}
     username: ${DB_USERNAME:user}
@@ -42,3 +53,6 @@ management:
     web:
       exposure:
         include: info, health
+
+secret-key: ${SECRET_KEY}
+otp_expiration_value: ${OTP_EXPIRATION_TIME}
