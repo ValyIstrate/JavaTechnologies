@@ -31,4 +31,6 @@ public interface CourseRepository extends JpaRepository<Course, Long>, JpaSpecif
         WHERE c.code = :code
     """)
     void updateCourseType(Integer type, String code);
+
+    Optional<Course> findByCode(String code);
 }

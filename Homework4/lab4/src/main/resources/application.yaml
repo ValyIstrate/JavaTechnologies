@@ -3,6 +3,14 @@ server:
   servlet:
     context-path: /homework
 
+#logging:
+#  level:
+#    root: INFO
+#    org.springframework.web: DEBUG
+#    org.springframework.security: DEBUG
+#    org.apache.kafka: DEBUG
+#    org.springframework.kafka: DEBUG
+
 spring:
   mail:
     host: ${SMTP_ENDPOINT}

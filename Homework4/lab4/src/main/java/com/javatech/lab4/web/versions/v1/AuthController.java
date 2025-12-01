@@ -4,7 +4,7 @@ import com.javatech.lab4.services.AuthService;
 import com.javatech.lab4.web.requests.ActivateAccountRq;
 import com.javatech.lab4.web.requests.LoginRq;
 import com.javatech.lab4.web.requests.RequestActivationRq;
-import com.javatech.lab4.web.requests.TokenRs;
+import com.javatech.lab4.web.responses.TokenRs;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

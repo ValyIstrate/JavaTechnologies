@@ -13,7 +13,7 @@ import com.javatech.lab4.services.utils.MailDetails;
 import com.javatech.lab4.web.requests.ActivateAccountRq;
 import com.javatech.lab4.web.requests.LoginRq;
 import com.javatech.lab4.web.requests.RequestActivationRq;
-import com.javatech.lab4.web.requests.TokenRs;
+import com.javatech.lab4.web.responses.TokenRs;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
